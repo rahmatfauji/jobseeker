@@ -32,6 +32,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function detail_users(){
+        return $this->hasOne(Detail_user::class);
+    }
+
     public function authorizeRoles($roles)
     {
         if(is_array($roles)){
