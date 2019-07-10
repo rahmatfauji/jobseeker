@@ -1,11 +1,11 @@
-@extends('layouts.app')
+@extends('template.master')
 
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+            <div class="card card-default">
+                <div class="card-header">Register</div>
                 {{-- @php
                 $tgl_lahir = "1997-02-14";
 
@@ -22,7 +22,7 @@
                 echo 'Usia'.$usia->y.' Tahun '.$usia->m.' Bulan '.$usia->d.' Hari';
                 @endphp --}}
 
-                <div class="panel-body">
+                <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
