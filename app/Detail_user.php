@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Detail_user extends Model
 {
     //
-    public function users()
+    public function user()
     {
-        return hasOne(User::class);
+        return belongsTo(User::class);
     }
 }

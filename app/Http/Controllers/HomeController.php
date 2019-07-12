@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
-
+use Session;
 class HomeController extends Controller
 {
     /**
@@ -21,8 +22,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        
+        $request->user()->authorizeRoles(['admin','user']);
+
+        // dd(Auth::user()->roles->first()->name);
+        if($request->user()->hasRole('admin')){
+            // return redirect()->route('employee-home');
+            return view('home');
+        }
+        elseif($request->user()->hasRole('user')){
+            return redirect('profile');
+            // return view('home');
+        }
     }
 }

@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function jobs()
+    {
+        return $this->belongsToMany(Job::class)->withTimestamps()->withPivot('status','message')->wherePivot('status','unread');
+    }
+
     public function detail_users(){
         return $this->hasOne(Detail_user::class);
     }

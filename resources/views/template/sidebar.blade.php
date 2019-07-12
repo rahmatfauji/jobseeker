@@ -5,66 +5,59 @@
       Tip 2: you can also add an image using data-image tag
   -->
     <div class="logo">
-      <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-        Creative Tim
+      <a href="#" class="simple-text logo-normal">
+        {{ Auth::user()->name }}
       </a>
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
-        <li class="nav-item active  ">
-          <a class="nav-link" href="./dashboard.html">
+        <li class="nav-item @yield('dashboard')">
+          <a class="nav-link" href="#">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./user.html">
+        @if (Auth::user()->roles()->first()->name=="user")
+        <li class="nav-item  @yield('profile')">
+          <a class="nav-link" href="{{url('profile')}}">
             <i class="material-icons">person</i>
             <p>User Profile</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./tables.html">
+        <li class="nav-item  @yield('appli')">
+          <a class="nav-link" href="{{url('my-applications')}}">
             <i class="material-icons">content_paste</i>
-            <p>Table List</p>
+            <p>My Applications</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./typography.html">
+        <li class="nav-item  @yield('jobs')">
+          <a class="nav-link" href="{{url('open-jobs')}}">
+            <i class="material-icons">content_paste</i>
+            <p>Jobs List</p>
+          </a>
+        </li>
+
+        @else        
+        <li class="nav-item  @yield('manageuser')">
+          <a class="nav-link" href="{{url('manage-user')}}">
             <i class="material-icons">library_books</i>
-            <p>Typography</p>
+            <p>Manage Users</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./icons.html">
-            <i class="material-icons">bubble_chart</i>
-            <p>Icons</p>
+        <li class="nav-item @yield('manageappli')">
+          <a class="nav-link" href="{{url('manage-applicants')}}">
+            <i class="material-icons">library_books</i>
+            <p>Manage Applicants</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./map.html">
-            <i class="material-icons">location_ons</i>
-            <p>Maps</p>
+        <li class="nav-item @yield('managejob')">
+          <a class="nav-link" href="{{url('manage-jobs')}}">
+            <i class="material-icons">library_books</i>
+            <p>Manage Job</p>
           </a>
         </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./notifications.html">
-            <i class="material-icons">notifications</i>
-            <p>Notifications</p>
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="nav-link" href="./rtl.html">
-            <i class="material-icons">language</i>
-            <p>RTL Support</p>
-          </a>
-        </li>
-        <li class="nav-item active-pro ">
-          <a class="nav-link" href="./upgrade.html">
-            <i class="material-icons">unarchive</i>
-            <p>Upgrade to PRO</p>
-          </a>
-        </li>
+        @endif
+
       </ul>
     </div>
   </div>

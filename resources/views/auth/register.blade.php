@@ -1,4 +1,4 @@
-@extends('template.master')
+@extends('template.guest')
 
 @section('content')
 <div class="container">
@@ -29,7 +29,7 @@
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Full Name</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus="true">
 
                                 @if ($errors->has('name'))
@@ -43,7 +43,7 @@
                         <div class="form-group{{ $errors->has('birth') ? ' has-error' : '' }}">
                             <label for="birth" class="col-md-4 control-label">Date of Birth</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="birth" type="date" class="form-control" name="birth" value="{{ old('birth') }}" required >
 
                                 @if ($errors->has('birth'))
@@ -57,7 +57,7 @@
                         {{-- <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                             <label for="gender" class="col-md-4 control-label">Gender</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <select class="form-control" name="gender">
                                     <option disabled selected>Select Here</option>
                                     <option value="M">Male</option>
@@ -74,7 +74,7 @@
                         {{-- <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
                             <label for="address" class="col-md-4 control-label">Address</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="name" type="text" class="form-control" name="address" value="{{ old('address') }}" required >
 
                                 @if ($errors->has('address'))
@@ -88,7 +88,7 @@
                         {{-- <div class="form-group{{ $errors->has('city') ? ' has-error' : '' }}">
                             <label for="city" class="col-md-4 control-label">City</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required >
 
                                 @if ($errors->has('city'))
@@ -102,7 +102,7 @@
                         {{-- <div class="form-group{{ $errors->has('mobilephone') ? ' has-error' : '' }}">
                                 <label for="mobilephone" class="col-md-4 control-label">Mobile Phone</label>
     
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <input id="mobilephone" type="text" class="form-control" name="mobilephone" value="{{ old('mobilephone') }}" required >
     
                                     @if ($errors->has('mobilephone'))
@@ -116,7 +116,7 @@
                         {{-- <div class="form-group{{ $errors->has('filcv') ? ' has-error' : '' }}">
                                 <label for="filcv" class="col-md-4 control-label">Upload CV</label>
     
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <input id="filcv" type="file" class="form-control" name="filcv" value="{{ old('mobilephone') }}" required >
     
                                     @if ($errors->has('filcv'))
@@ -130,7 +130,7 @@
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail Address</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
@@ -144,7 +144,7 @@
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                             <label for="password" class="col-md-4 control-label">Password</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="password" type="password" class="form-control" name="password" required>
 
                                 @if ($errors->has('password'))
@@ -158,13 +158,13 @@
                         <div class="form-group">
                             <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-12 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
