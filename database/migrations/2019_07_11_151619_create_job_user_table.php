@@ -18,7 +18,7 @@ class CreateJobUserTable extends Migration
             $table->integer('job_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->string('status')->default('unread');
-            $table->string('message')->nullable();
+            $table->string('message')->default('unread');
             $table->timestamps();
         });
     }

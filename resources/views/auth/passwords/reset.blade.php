@@ -1,13 +1,11 @@
-@extends('layouts.app')
-
+@extends('template.guest')
+@section('title','Change Password')
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+        <div class="col-md-12">
+            <div class="card container" style="width: 600px; margin-top:100px;">
+                <div class="card-header"><h4 class="card-header-info">Password</h4></div>
 
-                <div class="panel-body">
+                <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
                         {{ csrf_field() }}
 
@@ -56,7 +54,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-info">
                                     Reset Password
                                 </button>
                             </div>
@@ -65,6 +63,4 @@
                 </div>
             </div>
         </div>
-    </div>
-</div>
 @endsection

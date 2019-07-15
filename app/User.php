@@ -34,7 +34,19 @@ class User extends Authenticatable
 
     public function jobs()
     {
-        return $this->belongsToMany(Job::class)->withTimestamps()->withPivot('status','message')->wherePivot('status','unread');
+        return $this->belongsToMany(Job::class)->withTimestamps()->withPivot('status','message');
+    }
+
+    public function jobs_unread(){
+        return $this->jobs()->wherePivot('status','unread');
+    }
+
+    public function jobs_accept(){
+        return $this->jobs()->wherePivot('status','accept');
+    }
+
+    public function jobs_reject(){
+        return $this->jobs()->wherePivot('status','reject');
     }
 
     public function detail_users(){

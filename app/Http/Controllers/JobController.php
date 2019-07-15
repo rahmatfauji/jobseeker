@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\JobRequest;
 use Illuminate\Http\Request;
 use App\Job;
+use App\Detail_user;
 use Illuminate\Support\Facades\Auth;
 use Session;
+use Illuminate\Support\Facades\DB;
 class JobController extends Controller
 {
     /**
@@ -16,23 +19,44 @@ class JobController extends Controller
     public function index()
     {
         $role_active=Auth::user()->roles()->first()->name;
-        $job= Job::all();
+        $user_active=Auth::user()->id;
+        $job= Job::orderBy('created_at','asc')->get();
 
         if($role_active=='admin'){
             return view('admin.manage_job', compact('job'));
         }else{
-            return view('job.list_job', compact('job')); 
+            //cek apakah profil sudah lengkap/belum
+            if(cekProfil($user_active)==true){
+                Session::flash('error','Your profile is not completed');
+                return redirect('profile');
+            }else{
+            return view('job.list_job', compact('job'));
+            } 
         }
         
+    }
+
+    public function publishjobs()
+    {
+        $job= Job::orderBy('created_at','desc')->paginate(5);        
+        return view('guest.list_jobs', compact('job'));
     }
 
     public function apply($id)
     {
         $user_active=Auth::user()->id;
         $job = Job::findorfail($id);
+        foreach($job->users as $user){   
+        }
+        if(@$user->pivot->user_id <> Auth::user()->id){
         $job->users()->attach($user_active);
-        Session::flash("success", "Apply success");
-        return redirect('my-applications');
+            Session::flash("success", "Apply success");
+            return redirect('my-applications');
+        }else{
+            Session::flash("info", "Your applied was sent");
+            return redirect('my-applications'); 
+        }
+        
     }
 
     /**
@@ -51,7 +75,7 @@ class JobController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JobRequest $request)
     {
         $job= Job::create(
             [
@@ -60,6 +84,7 @@ class JobController extends Controller
              'descriptions'=>$request->descriptions
             ]
         );
+        Session::flash('info','Added Job is success');
         return redirect('manage-jobs');
     }
 
@@ -71,12 +96,20 @@ class JobController extends Controller
      */
     public function show($id)
     {
-        $user_active=Auth::user()->name;
+        $username_active=Auth::user()->name;
+        $user_active=Auth::user()->id;
         $job= Job::findorfail($id);
-        if($user_active=='admin'){
+
+        if($username_active=='admin'){
             return view('admin.detail_job', compact('job'));
         }else{
+            //cek apakah profil sudah lengkap/belum
+            if(cekProfil($user_active)==true){
+                Session::flash('error','Your profile is not completed');
+                return redirect('profile');
+            }else{
             return view('job.detail_job', compact('job'));
+            }
         }
 
     }
@@ -100,14 +133,14 @@ class JobController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(JobRequest $request, $id)
     {
         $job = Job::findorfail($id);
         $job->name=$request->name;
         $job->salary=$request->salary;
         $job->descriptions=$request->descriptions;
         $job->save();
-
+        Session::flash('success','Your Jobs updated success');
         return redirect('manage-jobs');
     }
 
@@ -120,8 +153,17 @@ class JobController extends Controller
     public function destroy($id)
     {
         $job = Job::findorfail($id);
+        DB::beginTransaction();
+        try{
         $job->users()->detach();
         $job->delete();
+        }catch(\Exception $e){
+            DB::rollback();
+            Session::flash("error", "User Delete Failed");
+            return redirect()->back();
+        }
+        DB::commit();
+        Session::flash('info','this job success deleted');
         return redirect('manage-jobs');
     }
 }

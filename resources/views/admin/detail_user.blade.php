@@ -1,5 +1,6 @@
 @extends('template.master')
 @section('manageappli','active')
+@section('title','Detail User')
 @section('content')
 
 
@@ -12,8 +13,8 @@
             <tr><th>Email</th><td>{{$user->email}}</td></tr>
             <tr><th>Address</th><td>{{$user->detail_users->address}}</td></tr>
             <tr><th>City</th><td>{{$user->detail_users->city}}</td></tr>
-            <tr><th>Date of Birth</th><td>{{$user->detail_users->birth}}</td></tr>
-            <tr><th>Gender</th><td>{{($user->detail_users->gender)=="M"?"Male":"Female"}}</td></tr>
+            <tr><th>Date of Birth</th><td>{{formatTanggal($user->detail_users->birth)}}</td></tr>
+            <tr><th>Gender</th><td>{{genderFormat($user->detail_users->gender)}}</td></tr>
             <tr><th>Mobile Phone</th><td>{{$user->detail_users->mobilephone}}</td></tr>
             <tr><th>Educational</th><td>{{$user->detail_users->educational}}</td></tr>
             <tr><th>Curriculum Vitae</th><td><a href="{{asset($user->detail_users->filecv)}}">Download</a></td></tr>

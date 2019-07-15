@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\DetailuserRequest;
 use Illuminate\Http\Request;
 use App\User;
 use App\Detail_user;
@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Session;
+use Hash;
 class UserController extends Controller
 {
     /**
@@ -29,7 +30,6 @@ class UserController extends Controller
         $user= User::findorfail($user_active);
         return view('user.profile', compact('user'));    
     }
-
     public function editme()
     {
         $user_active=Auth::user()->id;
@@ -48,12 +48,12 @@ class UserController extends Controller
         return view('user.edit_profile', compact('user','m','f'));    
     }
 
-    public function updateme(Request $request)
+    public function updateme(DetailuserRequest $request)
     {
         $user_active=Auth::user()->id;
         $user= User::find($user_active);
         $detail= Detail_user::where('user_id',$user_active)->first();
-
+        // dd($request->all());
         $file = $request->file('filecv');
         $destionation_path = 'documents/';
         
@@ -70,7 +70,7 @@ class UserController extends Controller
         }
 
         $user->name=$request->name;
-        $user->email=$request->email;
+        // $user->email=$request->email;
         $user->save();
 
         $detail->birth=$request->birth;
@@ -84,12 +84,34 @@ class UserController extends Controller
 
         }catch(\Exception $e){
             DB::rollback();
-            Session::flash("danger", "User update failed");
+            Session::flash("error", "User update failed");
             return redirect()->back();
         }
         DB::commit();
         Session::flash("success", "User update success");
         return redirect('profile');    
+    }
+
+    public function changePassword(){
+        return view('user.change_password');
+    }
+
+    public function prosesChangePassword(Request $request){
+        $user_active=Auth::user()->id;
+        // dd(bcrypt($request->password));
+        $user=User::find($user_active);
+        
+        // dd($user->password);
+        if (Hash::check($request->password, $user->password)) {
+            $user->password=Hash::make($request->new_password);
+            $user->save();
+            Session::flash("success","Your Password changed success");
+            return redirect('settings');
+        }else{
+            Session::flash("error","Your Password changed is failed");
+            return redirect('settings');
+        }
+        // return view('user.change_password');
     }
 
     /**
@@ -156,6 +178,21 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findorfail($id);
+        $detail= Detail_user::where('user_id',$id)->first();
+        DB::beginTransaction();
+        try{
+            @File::delete($detail->filecv);
+            $user->jobs()->detach();
+            $detail->delete();
+            $user->delete();
+        }catch(\Exception $e){
+            DB::rollback();
+            Session::flash("error", "User Delete Failed");
+            return redirect()->back();
+        }
+            DB::commit();
+            Session::flash('info','this user success deleted');
+            return redirect('manage-user');
     }
 }

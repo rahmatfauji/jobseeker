@@ -12,7 +12,7 @@
     <div class="sidebar-wrapper">
       <ul class="nav">
         <li class="nav-item @yield('dashboard')">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{url('home')}}">
             <i class="material-icons">dashboard</i>
             <p>Dashboard</p>
           </a>
@@ -26,13 +26,13 @@
         </li>
         <li class="nav-item  @yield('appli')">
           <a class="nav-link" href="{{url('my-applications')}}">
-            <i class="material-icons">content_paste</i>
+            <i class="material-icons">assignment</i>
             <p>My Applications</p>
           </a>
         </li>
         <li class="nav-item  @yield('jobs')">
           <a class="nav-link" href="{{url('open-jobs')}}">
-            <i class="material-icons">content_paste</i>
+            <i class="material-icons">assignment</i>
             <p>Jobs List</p>
           </a>
         </li>

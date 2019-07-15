@@ -11,17 +11,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes();
+Route::get('/', function () {
+        return view('guest.index');
+    });
 
+    Route::get('/welcome', function () {
+        return view('welcome');
+    });    
+Route::get('/careers','JobController@publishjobs');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['middleware'=>['auth','role:user,admin']], function(){
     Route::get('detail-job/{id}','JobController@show');
+    Route::get('settings','UserController@changePassword');
+    Route::post('change-password','UserController@prosesChangePassword');
 });
 
 Route::group(['middleware'=>['auth','role:user']], function(){
@@ -45,4 +52,7 @@ Route::group(['middleware'=>['auth','role:admin']], function(){
     Route::put('jobs/update/{id}','JobController@update')->name('update-job');
     Route::post('jobs/insert','JobController@store')->name('insert-job');
     Route::delete('jobs/delete/{id}','JobController@destroy')->name('delete-job');
+    Route::delete('user/delete/{id}','UserController@destroy')->name('delete-user');
+    Route::get('change-status/{id}/{id2}','ApplicantsController@changeStatus')->name('changestatus');
+    Route::post('update-status','ApplicantsController@updateStatus')->name('update-status');
 });

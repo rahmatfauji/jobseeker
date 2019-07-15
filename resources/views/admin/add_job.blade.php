@@ -1,32 +1,25 @@
 @extends('template.master')
 @section('managejob','active')
+@section('title','Add Job Form')
 @section('content')
 <form method="POST" action="{{ route('insert-job')}}" class="form-horizontal" role="form">
         {{ csrf_field() }} {{method_field('POST')}}
 <div class="card col-md-8 offset-2">
-    <div class="card-header">Add Jobs</div>
+    <div class="card-header"><h4 class="card-header-info">Add Job</h4></div>
     <div class="card-body">
         <div class="form-group">
             <label for="name" class="col-md-4 control-label">Name</label>
             <div class="col-md-12">
-                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-                @if ($errors->has('name'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                @endif
+                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
+                <div class="text-danger">{!! $errors->first('name') !!}</div>
             </div>
         </div>
 
         <div class="form-group">
             <label for="salary" class="col-md-4 control-label">Salary</label>
             <div class="col-md-12">
-                <input id="salary" type="number" class="form-control" name="salary" value="{{ old('salary') }}" required>
-                @if ($errors->has('salary'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('salary') }}</strong>
-                    </span>
-                @endif
+                <input id="salary" type="number" class="form-control" name="salary" value="{{ old('salary') }}">
+                <div class="text-danger">{!! $errors->first('salary') !!}</div>
             </div>
         </div>
 
@@ -34,11 +27,7 @@
             <label for="Description" class="col-md-4 control-label">Descriptions</label>
             <div class="col-md-12">
                 <textarea name="descriptions" class="form-control" rows="10">{{ old('descriptions') }}</textarea>
-                     @if ($errors->has('descriptions'))
-                    <span class="help-block">
-                        <strong>{{ $errors->first('descriptions') }}</strong>
-                    </span>
-                @endif
+                <div class="text-danger">{!! $errors->first('descriptions') !!}</div>
             </div>
         </div>
     

@@ -17,7 +17,7 @@ class CreateDetailUsersTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->date('birth')->nullable();
-            $table->enum('gender',['M','L'])->nullable();
+            $table->enum('gender',['M','F'])->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('mobilephone')->nullable();

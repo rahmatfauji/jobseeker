@@ -20,13 +20,85 @@
  </head>
  
  <body class="">
-   <div class="wrapper ">
-     <div class="main-panel">
-       <div class="content" style="margin-top:30px;">
+    <nav class="navbar navbar-expand-lg navbar-default navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="{{url('/')}}">Getting job</a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <ul class="navbar-nav nav">
+                @auth
+                <li class="nav-item">
+                <a href="{{ url('/home') }}">Home</a>
+                </li>
+                @else
+              <li class="nav-item">
+                <a class="nav-link" href="{{ route('login') }}">
+                  Login
+                </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ route('register') }}">
+                    Register
+                  </a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{{ url('careers') }}">
+                    Career
+                  </a>
+              </li>
+              @endauth
+            </ul>
+          </div>
+        </div>
+      </nav>
+         
+   <div class="container-fluid">
+       
         @yield('content')
-       </div>
-     </div>
+        
    </div>
+   <footer class="footer">
+      <div class="container-fluid">
+        <nav class="float-left">
+          <ul>
+            <li>
+              <a href="https://www.creative-tim.com">
+                Creative Tim
+              </a>
+            </li>
+            <li>
+              <a href="https://creative-tim.com/presentation">
+                About Us
+              </a>
+            </li>
+            <li>
+              <a href="http://blog.creative-tim.com">
+                Blog
+              </a>
+            </li>
+            <li>
+              <a href="https://www.creative-tim.com/license">
+                Licenses
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <div class="copyright float-right">
+          &copy;
+          <script>
+            document.write(new Date().getFullYear())
+          </script>, made with <i class="material-icons">favorite</i> by
+          <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
+        </div>
+      </div>
+    </footer>
    
    <!--   Core JS Files   -->
    <script src="{{asset('js/core/jquery.min.js')}}"></script>

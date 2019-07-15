@@ -1,4 +1,5 @@
 @extends('template.master')
+@section('title','Detail Jobs')
 @section('jobs','active')
 @section('content')
 <div class="card">
@@ -15,11 +16,11 @@
           
             <dt class="col-sm-3">Salary</dt>
             <dd class="col-sm-9">
-              {{$job->salary}}
+              {{rupiahFormat($job->salary)}}
             </dd>
             
             <dt class="col-sm-3">Posted at</dt>
-            <dd class="col-sm-9">{{$job->created_at}}</dd>
+            <dd class="col-sm-9">{{formatTanggalLong($job->created_at)}}</dd>
 
             <dt class="col-sm-3">Descriptions</dt>
             <dd class="col-sm-9"><pre style="font-family: 'Roboto'; font-size: 1rem;">{{$job->descriptions}}</pre></dd>
@@ -31,7 +32,7 @@
             <dd class="col-sm-9">
                 <form method="post" action="{{route('apply',$job->id)}}">
                     {{ csrf_field() }} {{method_field('POST')}}
-                    <button type="submit" class="btn btn-success pull-right">Apply</button>
+                    <button type="submit" class="btn btn-success pull-right" onclick="return confirm('Are you sure want apply this job?')">Apply</button>
                 </form></dd>
             @else
             <script>

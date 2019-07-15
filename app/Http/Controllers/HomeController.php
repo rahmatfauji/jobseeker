@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use App\User;
 use Session;
 class HomeController extends Controller
 {
@@ -29,12 +30,12 @@ class HomeController extends Controller
 
         // dd(Auth::user()->roles->first()->name);
         if($request->user()->hasRole('admin')){
-            // return redirect()->route('employee-home');
-            return view('home');
+            $user= User::has('jobs_unread')->with('jobs_unread')->get();
+            return view('admin.home', compact('user'));
         }
         elseif($request->user()->hasRole('user')){
-            return redirect('profile');
-            // return view('home');
+            // return redirect('profile');
+            return view('user.home');
         }
     }
 }

@@ -64,8 +64,10 @@
                    </p>
                  </a>
                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                 <a class="dropdown-item" href="{{url('profile')}}">Profile</a>
-                   <a class="dropdown-item" href="#">Settings</a>
+                  @if (Auth::user()->roles()->first()->name=="user")
+                  <a class="dropdown-item" href="{{url('profile')}}">Profile</a>
+                  @endif
+                   <a class="dropdown-item" href="{{url('settings')}}">Settings</a>
                    <div class="dropdown-divider"></div>
                    <a href="{{ route('logout') }}" class="dropdown-item"
                                             onclick="event.preventDefault();
@@ -178,20 +180,6 @@
 
      });
    </script>
-
-<script>
-  $(function() {
-      $('#data-tables').DataTable();
-      
-      var element = document.getElementById("data-tables_filter");
-      element.classList.add("pull-right");
-
-      var element = document.getElementById("data-tables_paginate");
-      element.classList.add("pull-right");
-      
-      
-  });
-  </script>
  </body>
  
  </html>

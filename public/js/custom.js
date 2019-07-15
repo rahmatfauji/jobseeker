@@ -166,4 +166,26 @@ $(document).ready(function() {
 
       });
     });
+
+    $('#data-tables').DataTable();
+    $('#data-tables2').DataTable();
+    $('#data-tables3').DataTable();
+    
+    var element = document.getElementById("data-tables_filter");
+    element.classList.add("pull-right");
+
+    var element = document.getElementById("data-tables_paginate");
+    element.classList.add("pull-right");
+
+    var element = document.getElementById("data-tables2_filter");
+    element.classList.add("pull-right");
+
+    var element = document.getElementById("data-tables2_paginate");
+    element.classList.add("pull-right");
+
+    var element = document.getElementById("data-tables3_filter");
+    element.classList.add("pull-right");
+
+    var element = document.getElementById("data-tables3_paginate");
+    element.classList.add("pull-right");
   });
