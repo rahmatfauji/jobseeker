@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user= User::with('detail_users')->get();
+        $user= User::with('detail_users')->orderBy('id','asc')->get();
         return view('admin.manage_user', compact('user'));  
     }
 
