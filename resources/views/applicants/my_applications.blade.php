@@ -10,10 +10,13 @@
             <tr align="center"><th>#</th><th>Jobs</th><th>Salary</th><th>Date Apply</th><th>Status</th></tr>
         </thead>
         <tbody>
+            @php
+            $no=0;
+            @endphp
             @foreach ($user as $datauser)
             @foreach ($datauser->jobs as $item)
             @php
-            $no=0;
+            
             if ($item->pivot->status=="unread"){
                 $s="btn-info";
                 $t="info";

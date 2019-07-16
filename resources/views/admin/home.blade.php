@@ -21,18 +21,23 @@
       </div>
     </div>
   </div>
-  @foreach ($user as $item)
-      
-  @endforeach
   @php
-  $job=$item->jobs_unread->count()
+   $no=0;   
   @endphp
+  <div style="display: none;">
+  @foreach ($user as $item)
+      @foreach ($item->jobs_unread as $unread)
+          {{$unread->pivot->status}}
+          {{++$no}}
+      @endforeach
+  @endforeach
+  </div>
 
-  @if($job>0)
+  @if($no>0)
   <script>
       window.onload=function()
       {
-          toastr.info("{{$job}} Applicants wait your response");
+          toastr.info("{{$no}} Applicants wait your response");
       }
   </script>  
   @endif

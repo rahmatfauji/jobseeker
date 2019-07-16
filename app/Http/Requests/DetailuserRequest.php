@@ -25,7 +25,7 @@ class DetailuserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|exists:users',
+            'email' => 'required|string|email|max:255',
             'address' => 'required|string|max:100',
             'city' => 'required|string|max:50',            
             'birth'=>'required|before:-17 years',

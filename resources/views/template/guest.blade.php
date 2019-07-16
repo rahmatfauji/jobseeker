@@ -20,7 +20,24 @@
  </head>
  
  <body class="">
-    <nav class="navbar navbar-expand-lg navbar-default navbar-absolute fixed-top ">
+    <div class="wrapper ">
+        <div class="sidebar d-lg-none" data-color="purple" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+          <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+      
+            Tip 2: you can also add an image using data-image tag
+        -->
+          
+          <div class="sidebar-wrapper" >
+            <ul class="nav">
+              
+      
+            </ul>
+          </div>
+        </div>
+
+    <div class="main-panel" style="width:100%">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="{{url('/')}}">Getting job</a>
@@ -32,10 +49,19 @@
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <ul class="navbar-nav nav">
+            <form class="navbar-form">
+               {{-- <div class="input-group no-border">
+                 <input type="text" value="" class="form-control" placeholder="Search...">
+                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                   <i class="material-icons">search</i>
+                   <div class="ripple-container"></div>
+                 </button>
+               </div> --}}
+             </form>
+            <ul class="navbar-nav">
                 @auth
                 <li class="nav-item">
-                <a href="{{ url('/home') }}">Home</a>
+                <a href="{{ url('/home') }}" class="nav-link">Home</a>
                 </li>
                 @else
               <li class="nav-item">
@@ -99,6 +125,8 @@
         </div>
       </div>
     </footer>
+    </div>
+    </div>
    
    <!--   Core JS Files   -->
    <script src="{{asset('js/core/jquery.min.js')}}"></script>

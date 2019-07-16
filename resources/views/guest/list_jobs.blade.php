@@ -1,5 +1,5 @@
 @extends('template.guest')
-@section('title','Guest Page')
+@section('title','Careers Page')
 @section('content')
 <div class="row">
 

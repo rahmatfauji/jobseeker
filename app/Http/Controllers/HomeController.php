@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         // dd(Auth::user()->roles->first()->name);
         if($request->user()->hasRole('admin')){
-            $user= User::has('jobs_unread')->with('jobs_unread')->get();
+            $user= User::has('jobs')->with('jobs')->get();
             return view('admin.home', compact('user'));
         }
         elseif($request->user()->hasRole('user')){

@@ -17,7 +17,12 @@
             <tr><th>Gender</th><td>{{genderFormat($user->detail_users->gender)}}</td></tr>
             <tr><th>Mobile Phone</th><td>{{$user->detail_users->mobilephone}}</td></tr>
             <tr><th>Educational</th><td>{{$user->detail_users->educational}}</td></tr>
-            <tr><th>Curriculum Vitae</th><td><a href="{{asset($user->detail_users->filecv)}}">Download</a></td></tr>
+            <tr><th>Curriculum Vitae</th><td>
+            @if($user->detail_users->filecv<>null)
+                <a href="{{asset($user->detail_users->filecv)}}">Download</a>
+            @endif    
+            </td></tr>
+            
         </thead>
         <tbody>
         <tr><td colspan="2"><a href="{{route('edit-profile')}}"  class="btn btn-info pull-right">Edit</a></td></tr>
