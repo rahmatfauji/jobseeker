@@ -8,7 +8,7 @@
 
 {{-- <div class="container" style="margin-top:80px;"> --}}
     @foreach ($job as $item)
-    <div class="col-lg-4 col-sm-12" style="max-height: 15rem;">
+    <div class="col-lg-4 col-sm-12">
     <div class="card bg-info">
         <div class="card-body">
           <h4 class="card-title">{{$item->name}}</h4>
