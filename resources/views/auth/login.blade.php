@@ -2,7 +2,7 @@
 @section('title','Login Page')
 @section('content')
         <div class="col-md-12 container" style="margin-top:100px; width:800px;">
-            <div class="card" style="height: 400px;">
+            <div class="card">
                 <div class="card-header"><h4 class="card-header-info">Login</h4></div>
 
                 <div class="card-body">

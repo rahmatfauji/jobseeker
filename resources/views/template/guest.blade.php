@@ -37,7 +37,7 @@
         </div>
 
     <div class="main-panel" style="width:100%">
-    <nav class="navbar navbar-expand-lg bg-dark navbar-absolute fixed-top ">
+    <nav class="navbar navbar-expand-lg bg-light navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <a class="navbar-brand" href="{{url('/')}}">Getting job</a>
