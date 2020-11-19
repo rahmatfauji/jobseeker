@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Job;
+use Faker\Factory;
 class JobsTableSeeder extends Seeder
 {
     /**
@@ -11,10 +12,17 @@ class JobsTableSeeder extends Seeder
      */
     public function run()
     {
-        $job = new Job;
-        $job->name='IT Support';
-        $job->salary=5000000;
-        $job->descriptions='SMK TKJ';
-        $job->save();
+        DB::table('jobs')->truncate();
+        $listJob=[];
+        $faker=Factory::create();
+        for ($i=0; $i <10 ; $i++) { 
+                $listJob[]=[
+                    'name'=>$faker->words(2,5),
+                    'salary'=>rand(7500000, 10000000),
+                    'descriptions'=>$faker->name()
+                ];
+        }
+
+        DB::table('jobs')->insert($listJob);
     }
 }

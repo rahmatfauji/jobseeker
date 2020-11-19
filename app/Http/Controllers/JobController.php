@@ -38,7 +38,7 @@ class JobController extends Controller
 
     public function publishjobs()
     {
-        $job= Job::orderBy('created_at','desc')->paginate(5);        
+        $job= Job::orderBy('created_at','desc')->paginate(6);        
         return view('guest.list_jobs', compact('job'));
     }
 
