@@ -53,7 +53,7 @@ class UserController extends Controller
         $user_active=Auth::user()->id;
         $user= User::find($user_active);
         $detail= Detail_user::where('user_id',$user_active)->first();
-        // dd($request->all());
+ //        dd($request->all());
         $file = $request->file('filecv');
         $destionation_path = 'documents/';
         
@@ -84,7 +84,7 @@ class UserController extends Controller
 
         }catch(\Exception $e){
             DB::rollback();
-            Session::flash("error", "other account is used email: $request->email ");
+	    Session::flash("error", "other account is used email: $request->email ");
             return redirect()->back();
         }
         DB::commit();

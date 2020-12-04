@@ -19,7 +19,10 @@ class JobsTableSeeder extends Seeder
                 $listJob[]=[
                     'name'=>$faker->words(2,5),
                     'salary'=>rand(7500000, 10000000),
-                    'descriptions'=>$faker->name()
+                    'descriptions'=>$faker->name(),
+		    'created_at'=>\Carbon\Carbon::now(),
+		    'updated_at'=>\Carbon\Carbon::now()
+
                 ];
         }
 
