@@ -17,6 +17,16 @@
    <link href="{{asset('css/material-dashboard.css?v=2.1.1')}}" rel="stylesheet" />
    <!-- CSS Just for demo purpose, don't include it in your project -->
    <link href="{{asset('demo/demo.css')}}" rel="stylesheet" />
+
+   <style>
+    footer{
+     position: absolute;
+     width: 100%;
+     height: 60px;
+     bottom: 0;
+     padding-top: 20px;
+   }
+  </style>
  </head>
  
  <body class="">
