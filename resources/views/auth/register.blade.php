@@ -1,10 +1,9 @@
 @extends('template.guest')
 @section('title','Registration Page')
 @section('content')
-<div class="container">
-        <div class="col-md-12 container" style="margin-top:100px; width:800px;">
+        <div class="container" style="margin-top:100px; max-width:800px;">
             <div class="card card-default">
-                <div class="card-header"><h4 class="card-header-info bg-primary">Register</h4></div>
+                <div class="card-header bg-dark"><h4 style="text-transform: uppercase;font-size: 12px;color: #fff;line-height: 24px;font-weight: 500;">Register</h4></div>
                 {{-- @php
                 $tgl_lahir = "1997-02-14";
 
@@ -164,7 +163,7 @@
 
                         <div class="form-group">
                             <div class="col-md-12 col-md-offset-4">
-                                <button type="submit" class="btn btn-info">
+                                <button type="submit" class="btn btn-dark">
                                     Register
                                 </button>
                             </div>
@@ -173,5 +172,4 @@
                 </div>            
         </div>
     </div>
-</div>
 @endsection

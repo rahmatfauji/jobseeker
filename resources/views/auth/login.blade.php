@@ -1,9 +1,9 @@
 @extends('template.guest')
 @section('title','Login Page')
 @section('content')
-        <div class="col-md-12 container" style="margin-top:100px; width:800px;">
+        <div class="container" style="margin-top:100px; max-width: 600px;">
             <div class="card">
-                <div class="card-header"><h4 class="card-header-info">Login</h4></div>
+                <div class="card-header bg-dark"><h4 style="text-transform: uppercase;font-size: 12px;color: #fff;line-height: 24px;font-weight: 500;">Login</h4></div>   
 
                 <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
@@ -49,7 +49,7 @@
 
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-info">
+                                <button type="submit" class="btn btn-dark">
                                     Login
                                 </button>
 

@@ -1,9 +1,9 @@
 @extends('template.guest')
 @section('title','Change Password')
 @section('content')
-        <div class="col-md-12">
-            <div class="card container" style="width: 600px; margin-top:100px;">
-                <div class="card-header"><h4 class="card-header-info">Password</h4></div>
+        <div class="container"  style="max-width: 600px; margin-top:100px;">
+            <div class="card">
+                <div class="card-header bg-dark"><h4 style="text-transform: uppercase;font-size: 12px;color: #fff;line-height: 24px;font-weight: 500;">Password</h4></div>
 
                 <div class="card-body">
                     <form class="form-horizontal" method="POST" action="{{ route('password.request') }}">
@@ -54,7 +54,7 @@
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-info">
+                                <button type="submit" class="btn btn-dark">
                                     Reset Password
                                 </button>
                             </div>
@@ -62,5 +62,4 @@
                     </form>
                 </div>
             </div>
-        </div>
 @endsection

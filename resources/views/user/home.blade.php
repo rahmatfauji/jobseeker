@@ -3,8 +3,8 @@
 @section('title','Homepage user')
 @section('content')
 {{-- <div class="row" style="margin-top:15px; width: 700px;"> --}}
-        <div class="col-lg-12 col-md-12 col-sm-12 container" style="margin-top:50px; width: 800px;">
-          <div class="card card-stats"  style=" height:300px;">
+        <div class="col-lg-12 col-md-12 col-sm-12 container" style="margin-top:50px; max-width: 800px;">
+          <div class="card card-stats"  style=" max-height:300px;">
             <div class="card-header card-header-info">
               <div class="card-icon">
                 <i class="material-icons">layers</i>
